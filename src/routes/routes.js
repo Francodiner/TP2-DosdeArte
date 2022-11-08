@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express();
-const { check } = require("express-validator");
-const reservas = require('../controllers/reservas')
+const {
+    check
+} = require("express-validator");
 const clientes = require('../controllers/clientes')
 
 router.use(express.json());
 
 //Rutas
-
-//Reservas
-router.post('/reservas/reservar', reservas.reservar)
 
 //Clientes
 router.post('/clientes/registrar',
@@ -22,6 +20,12 @@ router.post('/clientes/registrar',
         check('direccion', 'La direccion es requerida.').not().isEmpty(),
     ],
     clientes.registrarCliente)
+
+router.get('/clientes/:email',
+    [
+        check('email', 'El email es requerido.').not().isEmpty(),
+    ],
+    clientes.obtenerCliente)
 
 //Productos
 
