@@ -3,14 +3,15 @@ const router = express();
 const {
     check
 } = require("express-validator");
-const clientes = require('../controllers/clientes')
+const clientes = require('../controllers/clientes');
+const productos = require('../controllers/productos');
 
 router.use(express.json());
 
 //Rutas
 
 //Clientes
-router.post('/clientes/registrar',
+router.post('/clientes',
     [
         check('nombre', 'El nombre es requerido.').not().isEmpty(),
         check('apellido', 'El apellido es requerido.').not().isEmpty(),
@@ -28,5 +29,14 @@ router.get('/clientes/:email',
     clientes.obtenerCliente)
 
 //Productos
+
+router.post('/productos',
+    [
+        check('nombre', 'El nombre es requerido.').not().isEmpty(),
+        check('descripcion', 'La descripcion es requerida.').not().isEmpty(),
+        check('precio', 'El precio es requerido, y solo debe contener numeros.').isNumeric().not().isEmpty(),
+        check('cantidad', 'La cantidad es requerido, y solo debe contener numeros.').isNumeric().not().isEmpty().isInt(),
+    ],
+    productos.registrarProducto)
 
 module.exports = router;
