@@ -10,7 +10,7 @@ router.use(express.json());
 //Rutas
 
 //Clientes
-router.post('/clientes/registrar',
+router.post('/clientes',
     [
         check('nombre', 'El nombre es requerido.').not().isEmpty(),
         check('apellido', 'El apellido es requerido.').not().isEmpty(),
