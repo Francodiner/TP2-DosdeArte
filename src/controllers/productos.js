@@ -28,6 +28,23 @@ const registrarProducto = async (req, res) => {
 
 }
 
+const obtenerProducto = async (req, res) => {
+    const {
+        nombre
+    } = req.body
+    
+    try {
+        
+        res.status(201).send({
+            nombre: nombre
+        });
+    } catch (e) {
+        console.log(e)
+        return res.status(422).send(e);
+    }
+}
+
 module.exports = {
-    registrarProducto
+    registrarProducto,
+    obtenerProducto
 };

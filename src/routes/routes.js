@@ -39,4 +39,11 @@ router.post('/productos',
     ],
     productos.registrarProducto)
 
+
+router.get('/productos/:nombre',
+    [
+        check('nombre', 'El nombre es requerido.').not().isEmpty(),
+    ],
+    productos.obtenerProducto)
+
 module.exports = router;
