@@ -3,7 +3,7 @@
 const db = require('../models')
 const ClientesModel = db.clientes
 
-const findClientByEmail = async(email, response) => {
+const clienteByEmailFinder = async(email, response) => {
 
     const cliente = await ClientesModel.findOne({where: {email: email}})
 
@@ -16,5 +16,5 @@ const findClientByEmail = async(email, response) => {
 }
 
 module.exports = {
-    findClientByEmail
+    clienteByEmailFinder
 }
