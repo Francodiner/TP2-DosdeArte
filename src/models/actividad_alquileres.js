@@ -13,6 +13,12 @@ module.exports = (sequelize, DataTypes) => {
     fecha_devolucion: {
       type: DataTypes.DATE,
     },
+    producto_id : {
+      type: DataTypes.INTEGER
+    },
+    cliente_id: {
+      type: DataTypes.INTEGER
+    }
   })
 
   return ActividadAlquiler

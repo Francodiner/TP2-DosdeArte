@@ -5,6 +5,7 @@ const {
 } = require("express-validator");
 const clientes = require('../controllers/clientes');
 const productos = require('../controllers/productos');
+const actividadAlquileres = require('../controllers/actividad_alquileres');
 
 router.use(express.json());
 
@@ -79,5 +80,32 @@ router.delete('/productos/:nombre',
         check('nombre', 'El nombre es requerido.').not().isEmpty(),
     ],
     productos.eliminarProducto)
+
+
+    //ActividadAlquiler
+
+router.post('/actividadAlquiler',
+[
+    check('cantidad', 'La cantidad es requerida.').not().isEmpty(),
+    check('fecha_inicio', 'La fecha de inicio es requerida, y debe ser una fecha correcta.').isDate().not().isEmpty(),
+    check('fecha_fin', 'La fecha de fin es requerida, y debe ser una fecha correcta.').isDate().not().isEmpty(),
+],
+actividadAlquileres.registrarActividadAlquiler)
+
+
+router.put('/actividadAlquiler',
+[
+    check('cantidad', 'La cantidad es requerida.').not().isEmpty(),
+    check('fecha_inicio', 'La fecha de inicio es requerida, y debe ser una fecha correcta.').isDate().not().isEmpty(),
+    check('fecha_fin', 'La fecha de fin es requerida, y debe ser una fecha correcta.').isDate().not().isEmpty(),
+],
+actividadAlquileres.editarActividadAlquiler)
+
+
+router.delete('/actividadAlquiler/:email',
+[
+    check('nombre', 'El nombre es requerido.').not().isEmpty(),
+],
+actividadAlquileres.eliminarActividadAlquiler)
 
 module.exports = router;
