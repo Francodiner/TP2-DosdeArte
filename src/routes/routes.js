@@ -11,7 +11,18 @@ router.use(express.json());
 
 //Rutas
 
-//Clientes
+/**
+ * @openapi
+ * /clientes
+ *   post:
+ *     description: crea un corredor
+ *     responses:
+ *       201:
+ *         description: El cliente fue creado.
+ *       422:
+ *         description: No se proceso la solicitud
+ *         
+ */
 router.post('/clientes',
     [
         check('nombre', 'El nombre es requerido.').not().isEmpty(),
@@ -23,12 +34,37 @@ router.post('/clientes',
     ],
     clientes.registrarCliente)
 
+/**
+ * @openapi
+ * /clientes/:email
+ *   get:
+ *     description: obtiene un cliente por email
+ *     responses:
+ *       201:
+ *         Ok
+ *       422:
+ *         description: No se proceso la solicitud
+ *         
+ */    
+
 router.get('/clientes/:email',
     [
         check('email', 'El email es requerido.').not().isEmpty(),
     ],
     clientes.obtenerCliente)
 
+/**
+ * @openapi
+ * /clientes
+ *   put:
+ *     description: Edita un cliente
+ *     responses:
+ *       201:
+ *         description: El cliente ha sido editado y guardado
+ *       422:
+ *         description: No se proceso la solicitud
+ *         
+ */
 router.put('/clientes',
     [
         check('nombre', 'El nombre es requerido.').not().isEmpty(),
@@ -40,6 +76,19 @@ router.put('/clientes',
     ],
     clientes.editarCliente)
 
+/**
+ * @openapi
+ * /clientes/:email
+ *   delete:
+ *     description: Elimina un corredor buscandolo por email
+ *     responses:
+ *       201:
+ *         description: El cliente ha sido eliminado.
+ *       422:
+ *         description: No se proceso la solicitud
+ *         
+ */    
+
 router.delete('/clientes/:email',
     [
         check('email', 'El email es requerido.').not().isEmpty(),
@@ -47,6 +96,19 @@ router.delete('/clientes/:email',
     clientes.eliminarCliente)
 
 //Productos
+
+/**
+ * @openapi
+ * /productos
+ *   post:
+ *     description: crea un corredor
+ *     responses:
+ *       201:
+ *         description: Ok.
+ *       422:
+ *         description: 
+ *         
+ */
 
 router.post('/productos',
     [
@@ -57,12 +119,37 @@ router.post('/productos',
     ],
     productos.registrarProducto)
 
+/**
+ * @openapi
+ * /productos/:nombre
+ *   get:
+ *     description: obtiene un producto por nombre
+ *     responses:
+ *       201:
+ *         description: Ok.
+ *       404:
+ *         description: El producto no ha sido encontrado
+ *         
+ */
 
 router.get('/productos/:nombre',
     [
         check('nombre', 'El nombre es requerido.').not().isEmpty(),
     ],
     productos.obtenerProducto)
+
+/**
+ * @openapi
+ * /productos
+ *   put:
+ *     description: edita un producto buscandolo por nombre
+ *     responses:
+ *       201:
+ *         description: El producto ha sido editado.
+ *       404:
+ *         description: El producto no ha sido encontrado
+ *         
+ */    
 
 
 router.put('/productos',
@@ -75,6 +162,19 @@ router.put('/productos',
     productos.editarProducto)
 
 
+/**
+ * @openapi
+ * /productos/:nombre
+ *   delete:
+ *     description: edita un producto buscandolo por nombre
+ *     responses:
+ *       201:
+ *         description: El producto ha sido eliminado.
+ *       404:
+ *         description: El producto no ha sido encontrado
+ *         
+ */    
+
 router.delete('/productos/:nombre',
     [
         check('nombre', 'El nombre es requerido.').not().isEmpty(),
@@ -84,6 +184,18 @@ router.delete('/productos/:nombre',
 
     //ActividadAlquiler
 
+/**
+ * @openapi
+ * /actividadAlquiler
+ *   post:
+ *     description: Registra una actividad
+ *     responses:
+ *       201:
+ *         description: La actividad ha sido creada y guardada
+ *       422:
+ *         description: 
+ *         
+ */    
 router.post('/actividadAlquiler',
 [
     check('cantidad', 'La cantidad es requerida.').not().isEmpty(),
@@ -92,6 +204,18 @@ router.post('/actividadAlquiler',
 ],
 actividadAlquileres.registrarActividadAlquiler)
 
+/**
+ * @openapi
+ * /actividadAlquiler
+ *   put:
+ *     description: Edita una actividad Alquiler buscandola por el mail del cliente asociado
+ *     responses:
+ *       201:
+ *         description: La actividad ha sido creada y guardada
+ *       422:
+ *         description: 
+ *         
+ */  
 
 router.put('/actividadAlquiler',
 [
@@ -100,6 +224,19 @@ router.put('/actividadAlquiler',
     check('fecha_fin', 'La fecha de fin es requerida, y debe ser una fecha correcta.').isDate().not().isEmpty(),
 ],
 actividadAlquileres.editarActividadAlquiler)
+
+/**
+ * @openapi
+ * /actividadAlquiler/:email
+ *   post:
+ *     description: Elimina una actividadAlquiler buscandola por el mail del cliente asociado
+ *     responses:
+ *       201:
+ *         description: La actividad ha sido eliminada
+ *       422:
+ *         description: 
+ *         
+ */  
 
 
 router.delete('/actividadAlquiler/:email',
