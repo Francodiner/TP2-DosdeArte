@@ -36,7 +36,7 @@ router.post('/clientes',
 
 /**
  * @openapi
- * /clientes/:email
+  * /clientes/:email
  *   get:
  *     description: obtiene un cliente por email
  *     responses:
@@ -44,8 +44,11 @@ router.post('/clientes',
  *         Ok
  *       422:
  *         description: No se proceso la solicitud
+ * 
  *         
  */    
+
+
 
 router.get('/clientes/:email',
     [
@@ -55,7 +58,7 @@ router.get('/clientes/:email',
 
 /**
  * @openapi
- * /clientes
+  * /clientes
  *   put:
  *     description: Edita un cliente
  *     responses:
@@ -63,6 +66,8 @@ router.get('/clientes/:email',
  *         description: El cliente ha sido editado y guardado
  *       422:
  *         description: No se proceso la solicitud
+ *  
+ * 
  *         
  */
 router.put('/clientes',
@@ -78,7 +83,7 @@ router.put('/clientes',
 
 /**
  * @openapi
- * /clientes/:email
+  * /clientes/:email
  *   delete:
  *     description: Elimina un corredor buscandolo por email
  *     responses:
@@ -99,7 +104,7 @@ router.delete('/clientes/:email',
 
 /**
  * @openapi
- * /productos
+  * /productos
  *   post:
  *     description: crea un corredor
  *     responses:
@@ -121,7 +126,7 @@ router.post('/productos',
 
 /**
  * @openapi
- * /productos/:nombre
+  * /productos/:nombre
  *   get:
  *     description: obtiene un producto por nombre
  *     responses:
@@ -140,7 +145,7 @@ router.get('/productos/:nombre',
 
 /**
  * @openapi
- * /productos
+  * /productos
  *   put:
  *     description: edita un producto buscandolo por nombre
  *     responses:
@@ -164,7 +169,7 @@ router.put('/productos',
 
 /**
  * @openapi
- * /productos/:nombre
+  * /productos/:nombre
  *   delete:
  *     description: edita un producto buscandolo por nombre
  *     responses:
@@ -186,7 +191,7 @@ router.delete('/productos/:nombre',
 
 /**
  * @openapi
- * /actividadAlquiler
+  * /actividadAlquiler
  *   post:
  *     description: Registra una actividad
  *     responses:
@@ -206,7 +211,7 @@ actividadAlquileres.registrarActividadAlquiler)
 
 /**
  * @openapi
- * /actividadAlquiler
+  * /actividadAlquiler
  *   put:
  *     description: Edita una actividad Alquiler buscandola por el mail del cliente asociado
  *     responses:
@@ -227,7 +232,7 @@ actividadAlquileres.editarActividadAlquiler)
 
 /**
  * @openapi
- * /actividadAlquiler/:email
+  * /actividadAlquiler/:email
  *   post:
  *     description: Elimina una actividadAlquiler buscandola por el mail del cliente asociado
  *     responses:
