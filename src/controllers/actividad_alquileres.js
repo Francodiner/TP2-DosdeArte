@@ -4,6 +4,12 @@ const { actividadByIdClienteFinder } = require('../services/actividadByIdCliente
 const { clienteByEmailFinder } = require('../services/clienteByEmailFinder')
 const ActividadAlquileresModel = db.actividad_alquileres
 
+function sumarDias(fecha, dias){
+    fecha.setDate(fecha.getDate() + dias);
+    return fecha;
+  }
+
+
 const registrarActividadAlquiler = async (req, res) => {
     const {
         cantidad,
@@ -13,18 +19,25 @@ const registrarActividadAlquiler = async (req, res) => {
         cliente_email
     } = req.body
 
-    
+
     try {
         const Producto = await productoByNombreFinder(producto_nombre, res)
         const Cliente = await clienteByEmailFinder(cliente_email, res)
+        
+
+        console.log(fecha_fin)
+
+        console.log(sumarDias(fecha_fin, 7))
+
 
         const actividadAlquiler = await ActividadAlquileresModel.create({
             cantidad: cantidad,
             fecha_inicio: fecha_inicio,
             fecha_fin: fecha_fin,
-            fecha_devolucion: fecha_fin + 7,
+            fecha_devolucion: fecha_fin,
             producto_id: Producto.id,
-            cliente_id: Cliente.id
+            cliente_id: Cliente.id,
+            estado_id: 1
         });
         res.status(201).send({
             mensaje: "La actividad ah sido creada y guardada.",

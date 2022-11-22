@@ -10,6 +10,29 @@ router.use(express.json());
 /**
  * @openapi
  * /:
+ *   post:
+ *     description: Crear un cliente
+ *     responses:
+ *       200:
+ *         description: Cliente creado
+ *       422:
+*          description: No se proceso la solicitud
+ */
+
+router.post('/clientes',
+    [
+        check('nombre', 'El nombre es requerido.').not().isEmpty(),
+        check('apellido', 'El apellido es requerido.').not().isEmpty(),
+        check('nro_documento', 'El numero de documento es requerido, y solo debe contener numeros.').isNumeric().not().isEmpty().isInt(),
+        check('telefono', 'El numero de telefono es requerido, y solo debe contener numeros.').isNumeric().not().isEmpty().isInt(),
+        check('email', 'El email es requerido.').not().isEmpty(),
+        check('direccion', 'La direccion es requerida.').not().isEmpty(),
+    ],
+    clientes.registrarCliente)
+
+/**
+ * @openapi
+ * /:
  *   get:
  *     description: Welcome to swagger-jsdoc!
  *     responses:

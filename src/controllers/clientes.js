@@ -11,6 +11,7 @@ const registrarCliente = async (req, res) => {
         email,
         direccion
     } = req.body
+    console.log(req.params)
 
     try {
         const cliente = await ClientesModel.create({
