@@ -10,6 +10,18 @@ router.use(express.json());
 /**
  * @openapi
  * /:
+ *   get:
+ *     description: Dos De Arte!
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
+
+
+
+/**
+ * @openapi
+ * /:
  *   post:
  *     description: Crear un cliente
  *     responses:
@@ -30,20 +42,7 @@ router.post('/clientes',
     ],
     clientes.registrarCliente)
 
-/**
- * @openapi
- * /:
- *   get:
- *     description: Welcome to swagger-jsdoc!
- *     responses:
- *       200:
- *         description: Returns a mysterious string.
- */
-router.get(
-  "/clientes/:email",
-  [check("email", "El email es requerido.").not().isEmpty()],
-  clientes.obtenerCliente
-);
+
 
 /**
 * @openapi
