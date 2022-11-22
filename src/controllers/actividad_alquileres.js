@@ -24,11 +24,7 @@ const registrarActividadAlquiler = async (req, res) => {
         const Producto = await productoByNombreFinder(producto_nombre, res)
         const Cliente = await clienteByEmailFinder(cliente_email, res)
         
-
-        console.log(fecha_fin)
-
-        console.log(sumarDias(fecha_fin, 7))
-
+        console.log(req.body);
 
         const actividadAlquiler = await ActividadAlquileresModel.create({
             cantidad: cantidad,
