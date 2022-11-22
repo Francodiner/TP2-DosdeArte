@@ -49,19 +49,26 @@ const editarActividadAlquiler = async (req, res) => {
         cantidad,
         fecha_inicio,
         fecha_fin,
+        producto_nombre,
+        cliente_email
     } = req.body
 
     try {
 
-        const findCliente = await clienteByEmailFinder(email, res)
+        const findCliente = await clienteByEmailFinder( cliente_email, res)
         var cliente_id = findCliente.id
         const findActividad = await actividadByIdClienteFinder(cliente_id, res)
+        const Producto = await productoByNombreFinder(producto_nombre, res)
+        
     
         const actividadAlquiler = await findActividad.update({
             cantidad: cantidad,
             fecha_inicio: fecha_inicio,
-            fecha_fin:  fecha_fin,
-            fecha_devolucion: fecha_fin + 7,
+            fecha_fin: fecha_fin,
+            fecha_devolucion: fecha_fin,
+            producto_id: Producto.id,
+            cliente_id: findCliente.id,
+            estado_id: 1
         });
 
         res.status(201).send({
@@ -101,8 +108,29 @@ const eliminarActividadAlquiler = async (req, res) => {
     }
 }
 
+const obtenerActividad = async (req, res) => {
+    const {
+        email
+    } = req.params
+
+    try {
+        
+        const findCliente = await clienteByEmailFinder(email, res)
+        var cliente_id = findCliente.id
+        const findActividad = await actividadByIdClienteFinder(cliente_id, res)
+
+        res.status(201).send({
+            actividad: findActividad
+        });
+    } catch (e) {
+        return res.status(422).send(e);
+    }
+}
+
 module.exports = {
     registrarActividadAlquiler,
     eliminarActividadAlquiler,
-    editarActividadAlquiler
+    editarActividadAlquiler,
+    obtenerActividad
+
 };

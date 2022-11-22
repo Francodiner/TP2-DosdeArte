@@ -250,9 +250,28 @@ actividadAlquileres.editarActividadAlquiler)
 
 router.delete('/actividadAlquiler/:email',
 [
- check('nombre', 'El nombre es requerido.').not().isEmpty(),
+ check('email', 'El email es requerido.').not().isEmpty(),
 ],
 actividadAlquileres.eliminarActividadAlquiler)
+
+/**
+* @openapi
+* /productos/:nombre:
+*   get:
+*     description: obtiene un producto por nombre
+*     responses:
+*       201:
+*         description: Ok.
+*       404:
+*         description: El producto no ha sido encontrado
+*         
+*/
+
+router.get('/actividadAlquiler/:email',
+ [
+     check('email', 'El email es requerido.').not().isEmpty(),
+ ],
+ actividadAlquileres.obtenerActividad)
 
 
  
